@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دراسة حالة: نظام إدارة العقارات المعقدة</title>
+    
+    <!-- Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Devicon for Tech Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles (نفس تنسيقات الصفحة الأولى لتوحيد التصميم ) -->
+    <style>
+        :root {
+            --primary-color: #28a745; /* Green for Real Estate */
+            --dark-color: #343a40;
+            --section-bg: #f4f7fc;
+            --white: #ffffff;
+            --text-dark: #343a40;
+            --text-muted: #6c757d;
+        }
+
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--section-bg);
+            color: var(--text-dark);
+        }
+
+        /* --- Sticky Navbar --- */
+        .navbar-case-study {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+        }
+        .navbar-case-study .btn-back {
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+        .navbar-case-study .btn-back:hover {
+            background-color: var(--primary-color);
+            color: white !important;
+            transform: scale(1.05);
+        }
+
+        /* --- Project Banner --- */
+        .project-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            padding: 8rem 0;
+            color: white;
+            border-bottom-left-radius: 80px;
+        }
+        .project-banner h1 {
+            font-weight: 800;
+        }
+
+        /* --- Section Styling --- */
+        .section-title {
+            font-weight: 800;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .content-box {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        
+        /* --- Tech Cards --- */
+        .tech-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .tech-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .tech-card p {
+            margin-bottom: 0;
+            font-weight: 700;
+        }
+
+        /* --- Features List --- */
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+        .features-list li {
+            background-color: var(--white);
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .features-list li:hover {
+            transform: translateX(-5px);
+            background-color: #e9f5ec;
+        }
+        .features-list i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+
+        /* --- Gallery Styles --- */
+        .gallery-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .gallery-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            padding: 2rem 1rem 1rem 1rem;
+        }
+        .gallery-item .overlay h5 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .gallery-item .overlay p {
+            font-size: 0.9rem;
+            margin: 0.25rem 0 0 0;
+            opacity: 0.8;
+        }
+
+        /* --- Modal Styles --- */
+        .modal-content { background-color: transparent; }
+        .modal-img { max-width: 100%; max-height: 85vh; display: block; margin: auto; border-radius: 10px; }
+        .modal-header .modal-title { font-weight: 700; }
+
+        /* --- Footer --- */
+        footer { border-top: 1px solid #dee2e6; }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navbar with Back Button -->
+    <nav class="navbar navbar-light sticky-top navbar-case-study">
+        <div class="container">
+            <a href="../index.html" class="btn btn-outline-success btn-back">
+                <i class="fas fa-arrow-right me-2"></i> العودة للرئيسية
+            </a>
+            <span class="navbar-brand mb-0 h1 fw-bold d-none d-sm-inline-block">دراسة حالة: نظام إدارة العقارات</span>
+        </div>
+    </nav>
+
+    <!-- New Hero Banner -->
+    <header class="project-banner text-center">
+        <div class="container" data-aos="fade-up">
+            <h1 class="display-4">نظام إدارة العقارات المعقدة</h1>
+            <p class="lead fs-3">حل برمجي متكامل لإدارة العقارات والشقق المتعددة</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <!-- نظرة عامة -->
+        <section class="mb-5" data-aos="fade-up">
+            <h2 class="section-title">1. نظرة عامة</h2>
+            <div class="content-box">
+                <p class="fs-5">نظام إدارة العقارات (ULS) هو نظام مكتبي شامل تم تطويره لتبسيط إدارة العقارات الكبيرة التي تحتوي على عشرات الشقق. يهدف النظام إلى أتمتة عمليات الإيجار، الصيانة، متابعة المستأجرين، وإصدار التقارير المالية بكفاءة عالية، مما يوفر الوقت والجهد على مدراء العقارات.</p>
+            </div>
+        </section>
+
+        <!-- التقنيات المستخدمة -->
+        <section class="mb-5">
+            <h2 class="section-title" data-aos="fade-up">2. التقنيات المستخدمة</h2>
+            <div class="row g-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="tech-card">
+                        <i class="devicon-csharp-plain-wordmark colored"></i>
+                        <p>C# (.Net 4.8.1)</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="tech-card">
+                        <i class="devicon-microsoftsqlserver-plain-wordmark colored"></i>
+                        <p>SQL Server</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="tech-card">
+                        <i class="fas fa-layer-group" style="color: #6f42c1;"></i>
+                        <p>3-Layer Architecture</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="tech-card">
+                        <i class="fas fa-puzzle-piece" style="color: #fd7e14;"></i>
+                        <p>User Controls</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الميزات الأساسية -->
+        <section class="mb-5">
+            <h2 class="section-title" data-aos="fade-up">3. ميزات الإدارة الأساسية</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <ul class="features-list">
+                        <li><i class="fas fa-file-invoice-dollar"></i> <strong>إدارة سجلات الإيجار:</strong> تتبع العقود، إدارة تواريخ الاستحقاق، وإرسال إشعارات آلية.</li>
+                        <li><i class="fas fa-hand-holding-usd"></i> <strong>سجلات الغرامات:</strong> حساب وتتبع غرامات التأخير وإصدار تقارير بها.</li>
+                        <li><i class="fas fa-users"></i> <strong>إدارة المستأجرين:</strong> تسجيل بيانات المستأجرين، تتبع سجل الدفعات، وإدارة صلاحيات الوصول.</li>
+                        <li><i class="fas fa-building"></i> <strong>إدارة الشقق:</strong> إضافة، تعديل، وتصنيف الشقق لسهولة البحث والمتابعة.</li>
+                        <li><i class="fas fa-clipboard-list"></i> <strong>تتبع زيارات الصيانة:</strong> تسجيل وتحليل زيارات فرق الصيانة للشقق.</li>
+                        <li><i class="fas fa-sitemap"></i> <strong>إدارة العقارات:</strong> تنظيم الشقق والمرافق حسب كل عقار.</li>
+                        <li><i class="fas fa-book"></i> <strong>إدارة البحوث والمنشورات:</strong> أرشفة وتصنيف المستندات والبحوث المتعلقة بالعقارات.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- معرض الواجهات -->
+        <section class="mb-5">
+            <h2 class="section-title" data-aos="fade-up">4. معرض الواجهات</h2>
+            <div class="gallery-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/تسجيل الدخول.png" data-img-title="صفحة تسجيل الدخول"><img src="../assets/images/ULS/تسجيل الدخول.png" alt="صفحة تسجيل الدخول"><div class="overlay"><h5>صفحة تسجيل الدخول</h5><p>مع تشفير لكلمة المرور وحفظها.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/الرئيسية.png" data-img-title="الصفحة الرئيسية"><img src="../assets/images/ULS/الرئيسية.png" alt="الصفحة الرئيسية"><div class="overlay"><h5>الصفحة الرئيسية</h5><p>لوحة تحكم شاملة بإحصائيات حية.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/ادارة الاستعارات.png" data-img-title="إدارة سجلات الإيجار"><img src="../assets/images/ULS/ادارة الاستعارات.png" alt="إدارة سجلات الإيجار"><div class="overlay"><h5>إدارة سجلات الإيجار</h5><p>عرض وتصفية جميع عقود الإيجار.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/اضافة استعاراة جديدة 1.png" data-img-title="إضافة عقد جديد (خطوة 1)"><img src="../assets/images/ULS/اضافة استعاراة جديدة 1.png" alt="إضافة عقد جديد (خطوة 1)"><div class="overlay"><h5>إضافة عقد جديد (خطوة 1)</h5><p>اختيار المستأجر من القائمة.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/اضافة استعاراة جديدة 2.png" data-img-title="إضافة عقد جديد (خطوة 2)"><img src="../assets/images/ULS/اضافة استعاراة جديدة 2.png" alt="إضافة عقد جديد (خطوة 2)"><div class="overlay"><h5>إضافة عقد جديد (خطوة 2)</h5><p>اختيار الشقة المتاحة.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/اضافة استعاراة جديدة 3.png" data-img-title="إضافة عقد جديد (خطوة 3)"><img src="../assets/images/ULS/اضافة استعاراة جديدة 3.png" alt="إضافة عقد جديد (خطوة 3)"><div class="overlay"><h5>إضافة عقد جديد (خطوة 3)</h5><p>تأكيد تفاصيل العقد والمدة.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/ادارة الطلاب.png" data-img-title="إدارة المستأجرين"><img src="../assets/images/ULS/ادارة الطلاب.png" alt="إدارة المستأجرين"><div class="overlay"><h5>إدارة المستأجرين</h5><p>عرض وتعديل بيانات المستأجرين.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/ادارة الكتب.png" data-img-title="إدارة الشقق"><img src="../assets/images/ULS/ادارة الكتب.png" alt="إدارة الشقق"><div class="overlay"><h5>إدارة الشقق</h5><p>إضافة وتصنيف الشقق المتاحة.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/ادارة بحوث التخرج.png" data-img-title="إدارة المستندات"><img src="../assets/images/ULS/ادارة بحوث التخرج.png" alt="إدارة المستندات"><div class="overlay"><h5>إدارة المستندات</h5><p>أرشفة العقود والمستندات الهامة.</p></div></div>
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-img-src="../assets/images/ULS/ادارة الزيارات.png" data-img-title="إدارة زيارات الصيانة"><img src="../assets/images/ULS/ادارة الزيارات.png" alt="إدارة زيارات الصيانة"><div class="overlay"><h5>إدارة زيارات الصيانة</h5><p>تسجيل ومتابعة طلبات الصيانة.</p></div></div>
+            </div>
+        </section>
+
+        <!-- معلومات إضافية -->
+        <section class="mb-5">
+            <h2 class="section-title" data-aos="fade-up">5. معلومات إضافية</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100"><div class="content-box"><h3>36</h3><p class="text-muted mb-0">إجمالي الواجهات</p></div></div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200"><div class="content-box"><h3>9</h3><p class="text-muted mb-0">مكونات مستخدم</p></div></div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300"><div class="content-box"><h3>45</h3><p class="text-muted mb-0">كلاس برمجي</p></div></div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400"><div class="content-box"><h3>شهر واحد</h3><p class="text-muted mb-0">مدة التطوير</p></div></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Image Gallery -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-header border-0">
+                     <h5 class="modal-title text-white" id="imageModalLabel"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="" class="modal-img" alt="Project Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 mt-5 bg-white">
+        <p class="mb-0">&copy; 2025 <strong>وائل عبدالباسط اليوسفي</strong> | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        } );
+
+        // JavaScript for Image Gallery Modal
+        var imageModal = document.getElementById('imageModal');
+        imageModal.addEventListener('show.bs.modal', function (event) {
+            var triggerElement = event.relatedTarget;
+            var imgSrc = triggerElement.getAttribute('data-img-src');
+            var imgTitle = triggerElement.getAttribute('data-img-title');
+            
+            var modalImage = imageModal.querySelector('.modal-img');
+            var modalTitle = imageModal.querySelector('.modal-title');
+            
+            modalImage.src = imgSrc;
+            modalTitle.textContent = imgTitle;
+        });
+    </script>
+</body>
+</html>
